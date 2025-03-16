@@ -11,5 +11,5 @@ app.use(express.json());
 app.use("/posts", postsRoutes);
 app.use("/posts/:id/comments", commentsRoutes);
 
-const PORT = 5000;
+const PORT = 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

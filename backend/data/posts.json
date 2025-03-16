@@ -1,0 +1,12 @@
+[
+    {
+      "id": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b",
+      "title": "Introduction to React",
+      "content": "Lorem ipsum...",
+      "author": "John Doe",
+      "tags": ["react", "frontend"],
+      "date": "2026-01-10T12:34:56Z",
+      "bookmarked": false
+    }
+  ]
+  

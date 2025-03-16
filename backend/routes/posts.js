@@ -2,9 +2,13 @@ import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { z } from "zod";
 import { validatePost } from "../utils/validate.js";
 import { exportPostsToMarkdown } from "../utils/exportPosts.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 const postsFile = path.join(__dirname, "../data/posts.json");
