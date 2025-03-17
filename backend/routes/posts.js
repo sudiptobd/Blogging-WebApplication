@@ -13,10 +13,16 @@ const __dirname = path.dirname(__filename);
 const router = express.Router();
 const postsFile = path.join(__dirname, "../data/posts.json");
 
+// ✅ Read posts from file
+const getPosts = () => JSON.parse(fs.readFileSync(postsFile, "utf-8"));
+
+// ✅ Write posts to file
+const savePosts = (posts) => fs.writeFileSync(postsFile, JSON.stringify(posts, null, 2));
+
 // ✅ Fetch posts with pagination & sorting
 router.get("/", (req, res) => {
   const page = parseInt(req.query.page) || 1;
-  const posts = JSON.parse(fs.readFileSync(postsFile, "utf-8"));
+  const posts = getPosts();
   const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
   const paginatedPosts = sortedPosts.slice((page - 1) * 15, page * 15);
   res.json(paginatedPosts);
@@ -24,42 +30,55 @@ router.get("/", (req, res) => {
 
 // ✅ Create a new post
 router.post("/", (req, res) => {
-  const newPost = { id: uuidv4(), date: new Date().toISOString(), ...req.body };
+  const newPost = { id: uuidv4(), date: new Date().toISOString(), bookmarked: false, ...req.body };
   const validation = validatePost(newPost);
   if (!validation.success) return res.status(400).json(validation.error);
 
-  const posts = JSON.parse(fs.readFileSync(postsFile, "utf-8"));
+  const posts = getPosts();
   posts.push(newPost);
-  fs.writeFileSync(postsFile, JSON.stringify(posts, null, 2));
+  savePosts(posts);
   res.status(201).json(newPost);
 });
 
 // ✅ Update a post
 router.patch("/:id", (req, res) => {
   const { id } = req.params;
-  const posts = JSON.parse(fs.readFileSync(postsFile, "utf-8"));
+  const posts = getPosts();
   const index = posts.findIndex((post) => post.id === id);
 
   if (index === -1) return res.status(404).json({ message: "Post not found" });
 
   posts[index] = { ...posts[index], ...req.body };
-  fs.writeFileSync(postsFile, JSON.stringify(posts, null, 2));
+  savePosts(posts);
+  res.json(posts[index]);
+});
+
+// ✅ Toggle Bookmark Status
+router.patch("/:id/bookmark", (req, res) => {
+  const { id } = req.params;
+  const posts = getPosts();
+  const index = posts.findIndex((post) => post.id === id);
+
+  if (index === -1) return res.status(404).json({ message: "Post not found" });
+
+  posts[index].bookmarked = !posts[index].bookmarked; // Toggle bookmark status
+  savePosts(posts);
   res.json(posts[index]);
 });
 
 // ✅ Delete a post
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
-  let posts = JSON.parse(fs.readFileSync(postsFile, "utf-8"));
+  let posts = getPosts();
   posts = posts.filter((post) => post.id !== id);
-  fs.writeFileSync(postsFile, JSON.stringify(posts, null, 2));
+  savePosts(posts);
   res.json({ message: "Post deleted" });
 });
 
 // ✅ Search posts by title
 router.get("/search", (req, res) => {
   const query = req.query.q?.toLowerCase();
-  const posts = JSON.parse(fs.readFileSync(postsFile, "utf-8"));
+  const posts = getPosts();
   const results = query ? posts.filter((p) => p.title.toLowerCase().includes(query)) : posts.slice(0, 15);
   res.json(results);
 });

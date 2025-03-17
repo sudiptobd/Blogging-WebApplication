@@ -1,12 +1,66 @@
 [
-    {
-      "id": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b",
-      "title": "Introduction to React",
-      "content": "Lorem ipsum...",
-      "author": "John Doe",
-      "tags": ["react", "frontend"],
-      "date": "2026-01-10T12:34:56Z",
-      "bookmarked": false
-    }
-  ]
-  
+  {
+    "id": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b",
+    "title": "Introduction to React",
+    "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "author": "John Doe",
+    "tags": [
+      "react",
+      "frontend"
+    ],
+    "date": "2026-01-10T12:34:56Z",
+    "bookmarked": false
+  },
+  {
+    "id": "2a9c4f78-4d3b-41e7-b6b4-df3423f91a8a",
+    "title": "Understanding JavaScript Closures",
+    "content": "Closures are a fundamental concept in JavaScript. They allow functions to retain access to their scope, even when executed outside of it. This behavior is crucial for data encapsulation and callback functions.",
+    "author": "Jane Smith",
+    "tags": [
+      "javascript",
+      "closures",
+      "programming"
+    ],
+    "date": "2026-02-15T09:22:30Z",
+    "bookmarked": true
+  },
+  {
+    "id": "3b6e8a11-13df-4c39-9a82-f098aa5c8de2",
+    "title": "A Guide to Responsive Web Design",
+    "content": "Responsive web design is essential for modern web development. It ensures that web pages render well on a variety of devices and window or screen sizes by using flexible layouts, images, and CSS media queries.",
+    "author": "Emily Davis",
+    "tags": [
+      "web design",
+      "css",
+      "responsive"
+    ],
+    "date": "2026-03-22T14:45:10Z",
+    "bookmarked": false
+  },
+  {
+    "id": "4c5f6d22-9b47-4e99-a7c8-6e0c8f39f9d4",
+    "title": "Mastering Python for Data Science",
+    "content": "Python has become the dominant language in the field of data science. Libraries like NumPy, Pandas, and Scikit-learn have made it easy for analysts and scientists to process, analyze, and visualize data efficiently.",
+    "author": "Michael Johnson",
+    "tags": [
+      "python",
+      "data science",
+      "machine learning"
+    ],
+    "date": "2026-04-18T08:10:50Z",
+    "bookmarked": true
+  },
+  {
+    "id": "5d7f8e33-21c0-48de-9372-bc2a49b6f0a3",
+    "title": "The Future of AI in Software Development",
+    "content": "Artificial intelligence is transforming software development by automating repetitive tasks, improving code quality, and enabling intelligent decision-making through machine learning models.",
+    "author": "Sophia Martinez",
+    "tags": [
+      "AI",
+      "software development",
+      "machine learning"
+    ],
+    "date": "2026-05-12T17:30:00Z",
+    "bookmarked": false
+  }
+]
