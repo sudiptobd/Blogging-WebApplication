@@ -38,6 +38,20 @@ function PostList() {
     }
   };
 
+  // ✅ Delete Post Function
+  const deletePost = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this post?")) return; // ✅ Ask for confirmation
+
+    try {
+      await axios.delete(`${API_BASE_URL}/posts/${id}`);
+
+      // ✅ Update UI Immediately
+      setPosts(posts.filter((post) => post.id !== id));
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
+
   return (
     <div className="max-w-3xl mx-auto p-5">
       <h1 className="text-2xl font-bold mb-4">📖 Blog Posts</h1>
@@ -72,10 +86,18 @@ function PostList() {
 
             {/* ✅ Edit Button */}
             <Link to={`/edit/${id}`}>
-              <button className="mt-2 px-3 py-1 rounded bg-blue-500 text-white">
+              <button className="mt-2 px-3 py-1 rounded bg-blue-500 text-white ml-2">
                 ✏️ Edit
               </button>
             </Link>
+
+            {/* ✅ Delete Button */}
+            <button 
+              className="mt-2 px-3 py-1 rounded bg-red-500 text-white ml-2"
+              onClick={() => deletePost(id)}
+            >
+               💀 Delete
+            </button>
           </div>
         ))}
       </div>

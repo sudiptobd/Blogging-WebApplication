@@ -70,10 +70,20 @@ router.patch("/:id/bookmark", (req, res) => {
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   let posts = getPosts();
+
+  // Check if the post exists
+  const postExists = posts.some((post) => post.id === id);
+  if (!postExists) {
+    return res.status(404).json({ message: "Post not found" });
+  }
+
+  // Filter out the post to be deleted
   posts = posts.filter((post) => post.id !== id);
   savePosts(posts);
-  res.json({ message: "Post deleted" });
+
+  res.json({ message: "Post deleted successfully", id });
 });
+
 
 // ✅ Search posts by title
 router.get("/search", (req, res) => {
