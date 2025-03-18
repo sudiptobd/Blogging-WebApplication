@@ -75,18 +75,5 @@
       "backend",
       "web development"
     ]
-  },
-  {
-    "id": "16067e65-c218-4ef4-96e5-484a4ec645cd",
-    "date": "2025-03-18T16:52:39.676Z",
-    "bookmarked": false,
-    "title": "Exploring the Power of TypeScript",
-    "content": "TypeScript extends JavaScript by adding static types. It improves code maintainability, enhances debugging, and provides better tooling support. By using TypeScript, developers can catch errors early and write more robust applications.",
-    "author": "Alex Carter",
-    "tags": [
-      "typescript",
-      "javascript",
-      "programming"
-    ]
   }
 ]
