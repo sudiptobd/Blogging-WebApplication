@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5001"; // Ensure this matches your backend
+const API_BASE_URL = "http://localhost:5001";
 
-// ✅ Define Post Type
 interface Post {
   id: string;
   title: string;
@@ -18,16 +18,17 @@ function PostList() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/posts`)
-      .then(response => setPosts(response.data))
-      .catch(error => console.error("Error fetching posts:", error));
+    axios
+      .get(`${API_BASE_URL}/posts`)
+      .then((response) => setPosts(response.data))
+      .catch((error) => console.error("Error fetching posts:", error));
   }, []);
 
   // ✅ Toggle Bookmark Function
   const toggleBookmark = async (id: string, bookmarked: boolean) => {
     try {
       await axios.patch(`${API_BASE_URL}/posts/${id}/bookmark`);
-      
+
       // Update UI Immediately
       setPosts(posts.map(post => 
         post.id === id ? { ...post, bookmarked: !bookmarked } : post
@@ -42,23 +43,39 @@ function PostList() {
       <h1 className="text-2xl font-bold mb-4">📖 Blog Posts</h1>
       <div className="space-y-4">
         {posts.map(({ id, title, content, author, tags, date, bookmarked }) => (
-          <div key={id} className={`p-4 border rounded shadow bg-white ${bookmarked ? "border-yellow-500" : ""}`}>
+          <div
+            key={id}
+            className={`p-4 border rounded shadow bg-white ${
+              bookmarked ? "border-yellow-500" : ""
+            }`}
+          >
             <h2 className="text-xl font-bold">{title}</h2>
             <p className="text-gray-600">{content}</p>
             <p className="text-sm text-gray-500">
-              <strong>Author:</strong> {author} | <strong>Date:</strong> {new Date(date).toLocaleDateString()}
+              <strong>Author:</strong> {author} | <strong>Date:</strong>{" "}
+              {new Date(date).toLocaleDateString()}
             </p>
             <p className="text-sm">
-              <strong>Tags:</strong> {tags.length > 0 ? tags.join(", ") : "No tags"}
+              <strong>Tags:</strong>{" "}
+              {tags.length > 0 ? tags.join(", ") : "No tags"}
             </p>
-            
+
             {/* ✅ Bookmark Button */}
             <button 
-              className={`mt-2 px-3 py-1 rounded ${bookmarked ? "bg-yellow-500" : "bg-gray-300"} text-white`}
+              className={`mt-2 px-3 py-1 rounded ${
+                bookmarked ? "bg-yellow-500" : "bg-gray-300"
+              } text-white`}
               onClick={() => toggleBookmark(id, bookmarked)}
             >
               {bookmarked ? "⭐ Bookmarked" : "☆ Bookmark"}
             </button>
+
+            {/* ✅ Edit Button */}
+            <Link to={`/edit/${id}`}>
+              <button className="mt-2 px-3 py-1 rounded bg-blue-500 text-white">
+                ✏️ Edit
+              </button>
+            </Link>
           </div>
         ))}
       </div>

@@ -9,7 +9,7 @@
       "frontend"
     ],
     "date": "2026-01-10T12:34:56Z",
-    "bookmarked": false
+    "bookmarked": true
   },
   {
     "id": "2a9c4f78-4d3b-41e7-b6b4-df3423f91a8a",
@@ -52,7 +52,7 @@
   },
   {
     "id": "5d7f8e33-21c0-48de-9372-bc2a49b6f0a3",
-    "title": "The Future of AI in Software Development",
+    "title": "The Future of AI in Software Development X",
     "content": "Artificial intelligence is transforming software development by automating repetitive tasks, improving code quality, and enabling intelligent decision-making through machine learning models.",
     "author": "Sophia Martinez",
     "tags": [
