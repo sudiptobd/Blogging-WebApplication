@@ -1,0 +1,72 @@
+[
+  {
+    "id": "28a96171-827a-472c-bc49-7b96d855c6fe",
+    "postId": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b",
+    "author": "Alice Johnson",
+    "content": "This article is amazing, keep it up!",
+    "date": "2025-03-19T07:59:09.860522"
+  },
+  {
+    "id": "a91dfa16-9375-4d1b-b77b-daf1d26a9526",
+    "postId": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b",
+    "author": "Charlie Brown",
+    "content": "This was really helpful, I learned a lot!",
+    "date": "2025-03-19T07:59:09.860628"
+  },
+  {
+    "id": "feb64659-d28e-42a6-8cbd-0b0ba2220ec7",
+    "postId": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b",
+    "author": "Eve Black",
+    "content": "Could you elaborate more on this point?",
+    "date": "2025-03-19T07:59:09.860687"
+  },
+  {
+    "id": "9610b354-d171-4f82-b76d-f20a636a3fff",
+    "postId": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b",
+    "author": "David White",
+    "content": "This article is amazing, keep it up!",
+    "date": "2025-03-19T07:59:09.860722"
+  },
+  {
+    "id": "93f34b0f-3edc-4c77-bfed-df13561c7942",
+    "postId": "2a9c4f78-4d3b-41e7-b6b4-df3423f91a8a",
+    "author": "David White",
+    "content": "Could you elaborate more on this point?",
+    "date": "2025-03-19T07:59:09.860744"
+  },
+  {
+    "id": "49384eb1-560a-4d7d-bbce-e4908bc1b980",
+    "postId": "2a9c4f78-4d3b-41e7-b6b4-df3423f91a8a",
+    "author": "Alice Johnson",
+    "content": "I have a different perspective on this topic.",
+    "date": "2025-03-19T07:59:09.860786"
+  },
+  {
+    "id": "804644f0-6ee6-4a84-8c45-eabef333962f",
+    "postId": "3b6e8a11-13df-4c39-9a82-f098aa5c8de2",
+    "author": "Charlie Brown",
+    "content": "This was really helpful, I learned a lot!",
+    "date": "2025-03-19T07:59:09.860808"
+  },
+  {
+    "id": "d070facc-2615-4b8c-8462-27bfb5aabeb9",
+    "postId": "3b6e8a11-13df-4c39-9a82-f098aa5c8de2",
+    "author": "Bob Smith",
+    "content": "I have a different perspective on this topic.",
+    "date": "2025-03-19T07:59:09.860819"
+  },
+  {
+    "id": "f4ab401d-30ca-4990-b93f-bfce87731fec",
+    "postId": "a2541f35-929e-4e93-8487-fa148e47cafe",
+    "author": "Alice Johnson",
+    "content": "This was really helpful, I learned a lot!",
+    "date": "2025-03-19T07:59:09.860911"
+  },
+  {
+    "id": "7a90cf1d-f0a8-46a8-b784-8b0f507f33f3",
+    "postId": "a2541f35-929e-4e93-8487-fa148e47cafe",
+    "author": "David White",
+    "content": "Great insights! Thanks for sharing.",
+    "date": "2025-03-19T07:59:09.860922"
+  }
+]

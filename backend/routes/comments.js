@@ -1,41 +1,65 @@
 import express from "express";
+import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
-import { v4 as uuidv4 } from "uuid";
 import { fileURLToPath } from "url";
 
-// ✅ Fix __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 const commentsFile = path.join(__dirname, "../data/comments.json");
 
+// ✅ Read comments from file
+const getComments = () => JSON.parse(fs.readFileSync(commentsFile, "utf-8"));
+
+// ✅ Write comments to file
+const saveComments = (comments) => fs.writeFileSync(commentsFile, JSON.stringify(comments, null, 2));
+
 // ✅ Fetch all comments for a post
-router.get("/", (req, res) => {
-  const comments = JSON.parse(fs.readFileSync(commentsFile, "utf-8"));
-  const postId = req.params.id;
-  const postComments = comments.filter((comment) => comment.postId === postId);
-  res.json(postComments);
+router.get("/:postId", (req, res) => {
+  const { postId } = req.params;
+  const comments = getComments().filter(comment => comment.postId === postId);
+  res.json(comments);
 });
 
-// ✅ Add a new comment
-router.post("/", (req, res) => {
-  const comments = JSON.parse(fs.readFileSync(commentsFile, "utf-8"));
-  const newComment = { id: uuidv4(), postId: req.params.id, ...req.body, date: new Date().toISOString() };
+// ✅ Add a comment to a post
+router.post("/:postId", (req, res) => {
+  const { postId } = req.params;
+  const { author, content } = req.body;
+
+  if (!author || !content) {
+    return res.status(400).json({ message: "Author and content are required." });
+  }
+
+  const newComment = {
+    id: uuidv4(),
+    postId,
+    author,
+    content,
+    date: new Date().toISOString(),
+  };
+
+  const comments = getComments();
   comments.push(newComment);
-  fs.writeFileSync(commentsFile, JSON.stringify(comments, null, 2));
+  saveComments(comments);
+
   res.status(201).json(newComment);
 });
 
 // ✅ Delete a comment
 router.delete("/:commentId", (req, res) => {
-  let comments = JSON.parse(fs.readFileSync(commentsFile, "utf-8"));
   const { commentId } = req.params;
-  comments = comments.filter((comment) => comment.id !== commentId);
-  fs.writeFileSync(commentsFile, JSON.stringify(comments, null, 2));
-  res.json({ message: "Comment deleted" });
+  let comments = getComments();
+  
+  if (!comments.some(comment => comment.id === commentId)) {
+    return res.status(404).json({ message: "Comment not found." });
+  }
+
+  comments = comments.filter(comment => comment.id !== commentId);
+  saveComments(comments);
+
+  res.json({ message: "Comment deleted successfully", id: commentId });
 });
 
-// ✅ Correctly export the router as default
 export default router;

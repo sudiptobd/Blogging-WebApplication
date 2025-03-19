@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Comments from "./Comments";
 
 const API_BASE_URL = "http://localhost:5001";
 
@@ -160,8 +161,12 @@ function PostList() {
                 className="mt-2 px-3 py-1 rounded bg-red-500 text-white ml-2"
                 onClick={() => deletePost(id)}
               >
-                 🗑 Delete
+                 💀 Delete
               </button>
+
+              {/* ✅ Add Comments Section */}
+              <Comments postId={id} />
+
             </div>
           ))
         )}
