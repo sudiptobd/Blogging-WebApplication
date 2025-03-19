@@ -84,6 +84,11 @@ Contact me during office hours (10:00 AM–12:00 PM and 2:00–3:00 PM, Mon–Sa
 ### Final Submission:
 * Deadline: Wednesday at 9:00 PM. Update this README.md file to include a link to your recorded demo video. The video must include a walkthrough of the user experience, showcasing all the implemented features.
 
+---
+## 🎥 Demo Video  
+🔗 [Watch the Project Video Here](https://mum0-my.sharepoint.com/:f:/r/personal/sroy_miu_edu/Documents/WAP?csf=1&web=1&e=ueuJ3E)
+---
+
 Good luck, and happy coding!
 
 _Code Honor Submission Policy: Remember to respect the code honor submission policy. All written code must be original. You may not share any part of your code with other students. Code duplications will results to receiving NC for the final project. Presenting any code as one’s own work when it came from another source is plagiarism, which includes any matching patterns and code snippets, and will affect your grade. The use of AI is not permitted in this assignment. For more details, check the full course policies in the syllabus._
