@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Comments from "./Comments";
+import { useAtom } from "jotai";
+import { visitedPostsAtom, addVisitedPostAtom, clearVisitHistoryAtom } from "../store/visitHistoryAtom";
+
 
 const API_BASE_URL = "http://localhost:5001";
 
@@ -23,6 +26,11 @@ function PostList() {
   const [selectedAuthor, setSelectedAuthor] = useState<string>("");
   const [selectedTag, setSelectedTag] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+   // ✅ Jotai visit tracking atoms
+   const [visitedPosts] = useAtom(visitedPostsAtom);
+   const [, addVisitedPost] = useAtom(addVisitedPostAtom);
+   const [, clearVisitHistory] = useAtom(clearVisitHistoryAtom);
 
   // ✅ Fetch all posts on mount
   useEffect(() => {
@@ -68,6 +76,11 @@ function PostList() {
 
     setFilteredPosts(updatedPosts);
   }, [selectedAuthor, selectedTag, searchQuery, posts]);
+
+  // ✅ Track Post Visits
+  const handlePostClick = (id: string) => {
+    addVisitedPost(id); // ✅ Mark as visited
+  };
 
   // ✅ Toggle Bookmark Function
   const toggleBookmark = async (id: string, bookmarked: boolean) => {
@@ -125,6 +138,14 @@ function PostList() {
     >
       📥 Export Posts
     </button>
+
+      {/* ✅ Clear Visit History Button */}
+      <button 
+        onClick={() => clearVisitHistory()} // ✅ Clear visit history
+        className="mb-4 px-4 py-2 bg-red-500 text-white rounded"
+      >
+        🧹 Clear Visit History
+      </button>
 
       {/* ✅ Search Input */}
       <div className="mb-4">
@@ -184,8 +205,8 @@ function PostList() {
           <p className="text-center text-gray-600">No posts found for the selected filters.</p>
         ) : (
           filteredPosts.map(({ id, title, content, author, tags, date, bookmarked }) => (
-            <div key={id} className={`p-4 border rounded shadow bg-white ${bookmarked ? "border-yellow-500" : ""}`}>
-              <h2 className="text-xl font-bold">{title}</h2>
+            <div key={id} className={`p-4 border rounded shadow bg-white ${bookmarked ? "border-yellow-500" : ""} ${visitedPosts.includes(id) ? "opacity-70" : ""}`}>
+              <h2 className="text-xl font-bold" onClick={() => handlePostClick(id)} >{title}</h2>
               <p className="text-gray-600">{content}</p>
               <p className="text-sm text-gray-500">
                 <strong>Author:</strong> {author} | <strong>Date:</strong> {new Date(date).toLocaleDateString()}
@@ -193,6 +214,11 @@ function PostList() {
               <p className="text-sm">
                 <strong>Tags:</strong> {tags.length > 0 ? tags.join(", ") : "No tags"}
               </p>
+
+              {/* ✅ Indicate Visited Posts */}
+              {visitedPosts.includes(id) && (
+                <p className="text-sm text-gray-500 italic">👀 Visited</p>
+              )}
 
               {/* ✅ Bookmark Button */}
               <button 
