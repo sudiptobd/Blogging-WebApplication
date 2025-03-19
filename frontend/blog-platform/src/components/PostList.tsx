@@ -22,6 +22,7 @@ function PostList() {
   const [tags, setTags] = useState<string[]>([]);
   const [selectedAuthor, setSelectedAuthor] = useState<string>("");
   const [selectedTag, setSelectedTag] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   // ✅ Fetch all posts on mount
   useEffect(() => {
@@ -41,23 +42,32 @@ function PostList() {
       .catch((error) => console.error("Error fetching posts:", error));
   }, []);
 
-  // ✅ Handle filtering logic
+  // ✅ Handle filtering & search logic
   useEffect(() => {
     let updatedPosts = posts;
 
+    // ✅ Filter by Author
     if (selectedAuthor) {
       updatedPosts = updatedPosts.filter((post) => post.author === selectedAuthor);
     }
 
+    // ✅ Filter by Tag
     if (selectedTag) {
       updatedPosts = updatedPosts.filter((post) => post.tags.includes(selectedTag));
+    }
+
+    // ✅ Filter by Search Query (Post Title)
+    if (searchQuery) {
+      updatedPosts = updatedPosts.filter((post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     }
 
     // ✅ Sort: Bookmarked posts appear first
     updatedPosts = [...updatedPosts].sort((a, b) => Number(b.bookmarked) - Number(a.bookmarked));
 
     setFilteredPosts(updatedPosts);
-  }, [selectedAuthor, selectedTag, posts]);
+  }, [selectedAuthor, selectedTag, searchQuery, posts]);
 
   // ✅ Toggle Bookmark Function
   const toggleBookmark = async (id: string, bookmarked: boolean) => {
@@ -88,6 +98,19 @@ function PostList() {
   return (
     <div className="max-w-3xl mx-auto p-5">
       <h1 className="text-2xl font-bold mb-4">📖 Blog Posts</h1>
+
+      {/* ✅ Search Input */}
+      <div className="mb-4">
+        <label htmlFor="search" className="block mb-1 font-medium">Search by Title:</label>
+        <input 
+          type="text" 
+          id="search"
+          placeholder="Enter post title..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="border p-2 w-full rounded"
+        />
+      </div>
 
       {/* ✅ Filter Options with Accessible Labels */}
       <div className="flex space-x-4 mb-4">
