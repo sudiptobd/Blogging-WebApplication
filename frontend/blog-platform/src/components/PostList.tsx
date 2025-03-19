@@ -115,7 +115,7 @@ function PostList() {
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       
-      // ✅ Create download link
+      // Create download link
       const a = document.createElement("a");
       a.href = url;
       a.download = "blog-posts.zip";
@@ -131,7 +131,7 @@ function PostList() {
     <div className="max-w-3xl mx-auto p-5">
       <h1 className="text-2xl font-bold mb-4">📖 Blog Posts</h1>
 
-      {/* ✅ Export Button */}
+      {/* Export Button */}
     <button 
       onClick={downloadMarkdownZip} 
       className="mb-4 px-4 py-2 bg-green-500 text-white rounded"
@@ -139,7 +139,7 @@ function PostList() {
       📥 Export Posts
     </button>
 
-      {/* ✅ Clear Visit History Button */}
+      {/* Clear Visit History Button */}
       <button 
         onClick={() => clearVisitHistory()} // ✅ Clear visit history
         className="mb-4 px-4 py-2 bg-red-500 text-white rounded"
@@ -147,7 +147,7 @@ function PostList() {
         🧹 Clear Visit History
       </button>
 
-      {/* ✅ Search Input */}
+      {/* Search Input */}
       <div className="mb-4">
         <label htmlFor="search" className="block mb-1 font-medium">Search by Title:</label>
         <input 
@@ -160,7 +160,7 @@ function PostList() {
         />
       </div>
 
-      {/* ✅ Filter Options with Accessible Labels */}
+      {/* Filter Options with Accessible Labels */}
       <div className="flex space-x-4 mb-4">
         {/* Filter by Author */}
         <div className="flex flex-col w-1/2">
@@ -199,7 +199,7 @@ function PostList() {
         </div>
       </div>
 
-      {/* ✅ Display Filtered Posts */}
+      {/* Display Filtered Posts */}
       <div className="space-y-4">
         {filteredPosts.length === 0 ? (
           <p className="text-center text-gray-600">No posts found for the selected filters.</p>
@@ -215,12 +215,12 @@ function PostList() {
                 <strong>Tags:</strong> {tags.length > 0 ? tags.join(", ") : "No tags"}
               </p>
 
-              {/* ✅ Indicate Visited Posts */}
+              {/*  Indicate Visited Posts */}
               {visitedPosts.includes(id) && (
                 <p className="text-sm text-gray-500 italic">👀 Visited</p>
               )}
 
-              {/* ✅ Bookmark Button */}
+              {/*  Bookmark Button */}
               <button 
                 className={`mt-2 px-3 py-1 rounded ${bookmarked ? "bg-yellow-500" : "bg-gray-300"} text-white`}
                 onClick={() => toggleBookmark(id, bookmarked)}
@@ -228,14 +228,14 @@ function PostList() {
                 {bookmarked ? "⭐ Bookmarked" : "☆ Bookmark"}
               </button>
 
-              {/* ✅ Edit Button */}
+              {/*  Edit Button */}
               <Link to={`/edit/${id}`}>
                 <button className="mt-2 px-3 py-1 rounded bg-blue-500 text-white ml-2">
                   ✏️ Edit
                 </button>
               </Link>
 
-              {/* ✅ Delete Button */}
+              {/*  Delete Button */}
               <button 
                 className="mt-2 px-3 py-1 rounded bg-red-500 text-white ml-2"
                 onClick={() => deletePost(id)}
@@ -243,7 +243,7 @@ function PostList() {
                  💀 Delete
               </button>
 
-              {/* ✅ Add Comments Section */}
+              {/* Add Comments Section */}
               <Comments postId={id} />
 
             </div>

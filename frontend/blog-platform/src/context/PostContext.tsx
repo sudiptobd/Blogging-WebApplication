@@ -27,7 +27,7 @@ type Action =
   | { type: "TOGGLE_BOOKMARK"; payload: string }
   | { type: "DELETE_POST"; payload: string };
 
-// ✅ Reducer Function
+// Reducer Function
 const postReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "FETCH_SUCCESS":
@@ -48,12 +48,12 @@ const postReducer = (state: State, action: Action): State => {
   }
 };
 
-// ✅ Create Context
+// Create Context
 const PostContext = createContext<{ state: State; dispatch: React.Dispatch<Action> } | undefined>(
   undefined
 );
 
-// ✅ Context Provider Component
+// Context Provider Component
 export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(postReducer, {
     posts: [],
@@ -71,7 +71,7 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
   return <PostContext.Provider value={{ state, dispatch }}>{children}</PostContext.Provider>;
 };
 
-// ✅ Custom Hook for Using Post Context
+// Custom Hook for Using Post Context
 export const usePostContext = () => {
   const context = useContext(PostContext);
   if (!context) throw new Error("usePostContext must be used within PostProvider");

@@ -4,13 +4,13 @@ import archiver from "archiver";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// ✅ Fix __dirname for ES modules
+//  __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Ensure Named Export Works for ES Modules
+//  Ensure Named Export Works for ES Modules
 export function exportPostsToMarkdown(res) {
-  const postsFile = path.join(__dirname, "../data/posts.json"); // Fix path
+  const postsFile = path.join(__dirname, "../data/posts.json"); 
   const posts = JSON.parse(fs.readFileSync(postsFile, "utf-8"));
 
   const archive = archiver("zip", { zlib: { level: 9 } });

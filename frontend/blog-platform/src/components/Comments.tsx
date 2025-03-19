@@ -20,14 +20,14 @@ function Comments({ postId }: CommentsProps) {
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
 
-  // ✅ Fetch comments on mount
+  // Fetch comments on mount
   useEffect(() => {
     axios.get(`${API_BASE_URL}/comments/${postId}`)
       .then(response => setComments(response.data))
       .catch(error => console.error("Error fetching comments:", error));
   }, [postId]);
 
-  // ✅ Add Comment
+  // Add Comment
   const addComment = async () => {
     if (!author || !content) return alert("All fields are required.");
     
@@ -41,7 +41,7 @@ function Comments({ postId }: CommentsProps) {
     }
   };
 
-  // ✅ Delete Comment
+  // Delete Comment
   const deleteComment = async (id: string) => {
     if (!window.confirm("Are you sure you want to delete this comment?")) return;
 
@@ -57,7 +57,7 @@ function Comments({ postId }: CommentsProps) {
     <div className="mt-4 p-4 border rounded shadow">
       <h3 className="text-lg font-bold">💬 Comments</h3>
 
-      {/* ✅ Display Comments */}
+      {/* Display Comments */}
       {comments.length === 0 ? (
         <p className="text-gray-600">No comments yet.</p>
       ) : (
@@ -72,7 +72,7 @@ function Comments({ postId }: CommentsProps) {
 
         <p></p>
 
-      {/* ✅ Add Comment Form */}
+      {/* Add Comment Form */}
       <div className="mt-4 flex flex-col space-y-1">
         <textarea  
           placeholder="Your Name" 

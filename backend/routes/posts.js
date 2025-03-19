@@ -15,13 +15,13 @@ const __dirname = path.dirname(__filename);
 const router = express.Router();
 const postsFile = path.join(__dirname, "../data/posts.json");
 
-// ✅ Read posts from file
+// Read posts from file
 const getPosts = () => JSON.parse(fs.readFileSync(postsFile, "utf-8"));
 
-// ✅ Write posts to file
+// Write posts to file
 const savePosts = (posts) => fs.writeFileSync(postsFile, JSON.stringify(posts, null, 2));
 
-// ✅ Fetch posts with pagination & sorting
+// Fetch posts with pagination & sorting
 router.get("/", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const posts = getPosts();
@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
   res.json(paginatedPosts);
 });
 
-// ✅ Export posts to Markdown & ZIP
+// Export posts to Markdown & ZIP
 router.get("/export", async (req, res) => {
   const posts = getPosts();
 
@@ -38,12 +38,12 @@ router.get("/export", async (req, res) => {
     return res.status(400).json({ message: "No posts available for export." });
   }
 
-  // ✅ Create ZIP Archive
+  // Create ZIP Archive
   const archive = archiver("zip", { zlib: { level: 9 } });
   res.attachment("blog-posts.zip");
   archive.pipe(res);
 
-  // ✅ Convert Each Post to Markdown & Add to ZIP
+  // Convert Each Post to Markdown & Add to ZIP
   posts.forEach((post) => {
     const markdown = json2md([
       { h1: post.title },
@@ -59,7 +59,7 @@ router.get("/export", async (req, res) => {
   archive.finalize();
 });
 
-// ✅ Create a new post
+// Create a new post
 router.post("/", (req, res) => {
   const newPost = { id: uuidv4(), date: new Date().toISOString(), bookmarked: false, ...req.body };
   const validation = validatePost(newPost);
@@ -71,7 +71,7 @@ router.post("/", (req, res) => {
   res.status(201).json(newPost);
 });
 
-// ✅ Update a post
+// Update a post
 router.patch("/:id", (req, res) => {
   const { id } = req.params;
   const posts = getPosts();
@@ -84,7 +84,7 @@ router.patch("/:id", (req, res) => {
   res.json(posts[index]);
 });
 
-// ✅ Toggle Bookmark Status
+// Toggle Bookmark Status
 router.patch("/:id/bookmark", (req, res) => {
   const { id } = req.params;
   const posts = getPosts();
@@ -97,7 +97,7 @@ router.patch("/:id/bookmark", (req, res) => {
   res.json(posts[index]);
 });
 
-// ✅ Delete a post
+// Delete a post
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   let posts = getPosts();
@@ -116,7 +116,7 @@ router.delete("/:id", (req, res) => {
 });
 
 
-// ✅ Search posts by title
+// Search posts by title
 router.get("/search", (req, res) => {
   const query = req.query.q?.toLowerCase();
   const posts = getPosts();
@@ -124,7 +124,7 @@ router.get("/search", (req, res) => {
   res.json(results);
 });
 
-// ✅ Export posts to Markdown & ZIP
+// Export posts to Markdown & ZIP
 router.get("/export", async (req, res) => {
   await exportPostsToMarkdown(res);
 });

@@ -47,7 +47,7 @@ const CommentContext = createContext<
 export const CommentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(commentReducer, { comments: [], loading: true });
 
-  // ✅ Fetch comments when component mounts
+  // Fetch comments when component mounts
   useEffect(() => {
     const fetchInitialComments = async () => {
       try {
@@ -59,7 +59,7 @@ export const CommentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
 
     fetchInitialComments();
-  }, []); // ✅ Empty dependency array means this runs on mount only
+  }, []); // Empty dependency array means this runs on mount only
 
   const fetchComments = async (postId: string) => {
     try {

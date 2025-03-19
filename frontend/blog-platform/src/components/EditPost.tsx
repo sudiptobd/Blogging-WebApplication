@@ -5,7 +5,7 @@ import axios from "axios";
 const API_BASE_URL = "http://localhost:5001";
 
 function EditPost() {
-  const { id } = useParams<{ id: string }>();  // ✅ Get post ID from URL
+  const { id } = useParams<{ id: string }>();  // Get post ID from URL
   const navigate = useNavigate();
   const [post, setPost] = useState({
     title: "",
@@ -15,7 +15,7 @@ function EditPost() {
     bookmarked: false,
   });
 
-  // ✅ Load post data
+  // Load post data
   useEffect(() => {
     axios.get(`${API_BASE_URL}/posts`)
       .then((response) => {
@@ -33,7 +33,7 @@ function EditPost() {
       .catch((error) => console.error("Error loading post:", error));
   }, [id]);
 
-  // ✅ Handle form submission
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const updatedPost = { ...post, tags: post.tags.split(",").map((t) => t.trim()) };

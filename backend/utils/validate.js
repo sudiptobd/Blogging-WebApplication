@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// ✅ Define Post Schema with Zod
+// Define Post Schema with Zod
 const postSchema = z.object({
   id: z.string(),
   title: z.string().min(3, "Title must be at least 3 characters"),
@@ -11,7 +11,7 @@ const postSchema = z.object({
   bookmarked: z.boolean(),
 });
 
-// ✅ Export function correctly
+//Export function correctly
 export function validatePost(post) {
   return postSchema.safeParse(post);
 }

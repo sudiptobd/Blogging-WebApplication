@@ -27,11 +27,11 @@ function AddPost() {
         author,
         tags: tags.split(",").map(tag => tag.trim()), // Convert to an array
       });
-      setSuccess("✅ Post added successfully!");
+      setSuccess("Post added successfully!");
       setError("");
       setTimeout(() => navigate("/"), 2000); // Redirect after 2 seconds
     } catch (error) {
-      setError("❌ Failed to add post. Please try again.");
+      setError("Failed to add post. Please try again.");
     }
   };
 
