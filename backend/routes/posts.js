@@ -6,6 +6,8 @@ import { fileURLToPath } from "url";
 import { z } from "zod";
 import { validatePost } from "../utils/validate.js";
 import { exportPostsToMarkdown } from "../utils/exportPosts.js";
+import archiver from "archiver";
+import json2md from "json2md";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,6 +28,35 @@ router.get("/", (req, res) => {
   const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
   const paginatedPosts = sortedPosts.slice((page - 1) * 15, page * 15);
   res.json(paginatedPosts);
+});
+
+// ✅ Export posts to Markdown & ZIP
+router.get("/export", async (req, res) => {
+  const posts = getPosts();
+
+  if (!posts.length) {
+    return res.status(400).json({ message: "No posts available for export." });
+  }
+
+  // ✅ Create ZIP Archive
+  const archive = archiver("zip", { zlib: { level: 9 } });
+  res.attachment("blog-posts.zip");
+  archive.pipe(res);
+
+  // ✅ Convert Each Post to Markdown & Add to ZIP
+  posts.forEach((post) => {
+    const markdown = json2md([
+      { h1: post.title },
+      { blockquote: `Author: ${post.author}` },
+      { p: post.content },
+      { p: `📅 Date: ${new Date(post.date).toLocaleDateString()}` },
+      { ul: post.tags.map(tag => `#${tag}`) },
+    ]);
+
+    archive.append(markdown, { name: `${post.title.replace(/\s+/g, "-")}.md` });
+  });
+
+  archive.finalize();
 });
 
 // ✅ Create a new post

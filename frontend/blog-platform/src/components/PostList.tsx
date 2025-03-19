@@ -95,9 +95,36 @@ function PostList() {
     }
   };
 
+  // ✅ Download Function
+  const downloadMarkdownZip = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/posts/export`);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      // ✅ Create download link
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "blog-posts.zip";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Error exporting posts:", error);
+    }
+  };
+
   return (
     <div className="max-w-3xl mx-auto p-5">
       <h1 className="text-2xl font-bold mb-4">📖 Blog Posts</h1>
+
+      {/* ✅ Export Button */}
+    <button 
+      onClick={downloadMarkdownZip} 
+      className="mb-4 px-4 py-2 bg-green-500 text-white rounded"
+    >
+      📥 Export Posts
+    </button>
 
       {/* ✅ Search Input */}
       <div className="mb-4">
