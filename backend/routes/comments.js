@@ -16,6 +16,12 @@ const getComments = () => JSON.parse(fs.readFileSync(commentsFile, "utf-8"));
 // ✅ Write comments to file
 const saveComments = (comments) => fs.writeFileSync(commentsFile, JSON.stringify(comments, null, 2));
 
+// ✅ Fetch all comments
+router.get("/", (req, res) => {
+  const comments = getComments();
+  res.json(comments);
+});
+
 // ✅ Fetch all comments for a post
 router.get("/:postId", (req, res) => {
   const { postId } = req.params;
