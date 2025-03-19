@@ -61,12 +61,12 @@
       "machine learning"
     ],
     "date": "2026-05-12T17:30:00Z",
-    "bookmarked": true
+    "bookmarked": false
   },
   {
     "id": "a2541f35-929e-4e93-8487-fa148e47cafe",
     "date": "2025-03-17T23:09:32.382Z",
-    "bookmarked": true,
+    "bookmarked": false,
     "title": "Building Scalable Web Applications with Node.js",
     "content": "Node.js is a powerful runtime environment for building scalable and high-performance web applications. It allows developers to use JavaScript for both server-side and client-side scripting, making development faster and more efficient.",
     "author": "David Lee",

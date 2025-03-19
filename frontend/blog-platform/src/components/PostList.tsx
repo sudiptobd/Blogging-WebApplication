@@ -53,6 +53,9 @@ function PostList() {
       updatedPosts = updatedPosts.filter((post) => post.tags.includes(selectedTag));
     }
 
+    // ✅ Sort: Bookmarked posts appear first
+    updatedPosts = [...updatedPosts].sort((a, b) => Number(b.bookmarked) - Number(a.bookmarked));
+
     setFilteredPosts(updatedPosts);
   }, [selectedAuthor, selectedTag, posts]);
 
