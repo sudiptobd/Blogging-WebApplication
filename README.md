@@ -64,9 +64,6 @@ comments.json
 * Frontend: React, React Router, Jotai, TailwindCSS.
 * Backend: Express, Zod, uuid, json2md, archiver, Node filesystem.
 
-### Need Assistance?
-Contact me during office hours (10:00 AM–12:00 PM and 2:00–3:00 PM, Mon–Sat). Support includes design reviews, and best practices guidance.
-
 ---
 ## 🎥 Demo Video  
 🔗 [Watch the Project Video Here](https://mum0-my.sharepoint.com/:f:/r/personal/sroy_miu_edu/Documents/WAP?csf=1&web=1&e=ueuJ3E)
