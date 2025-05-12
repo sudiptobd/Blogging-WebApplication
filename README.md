@@ -1,6 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/ERpJHKd2)
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=18695980)
-# CS472 Final Project March 2025: Blog Management Platform
+Project March 2025: Blog Management Platform
 Build a blog management platform where users can create, and interact with blog posts. 
 
 ### Core Functionality
@@ -66,29 +64,10 @@ comments.json
 * Frontend: React, React Router, Jotai, TailwindCSS.
 * Backend: Express, Zod, uuid, json2md, archiver, Node filesystem.
 
-### Evaluation Criteria:
-<ins>**Version Control (10 points):**</ins>
-50% of the grade will be based on the proper use of version control, including clear and descriptive commit messages that follow best practices (e.g., concise, meaningful, and referencing specific tasks or features). Additionally, students must demonstrate consistent daily progress by pushing their work to the remote repository daily throughout the project duration.
-
-   
-<ins>**Code Quality and Feature Implementation (10 points):**</ins>
-The remaining 50% of the grade will be awarded based on the quality and completeness of the codebase. This includes successfully implementing all required features, adhering to coding best practices (e.g., clean code, proper input validation using Zod on the backend, responsive and intuitive UI with TailwindCSS, and efficient algorithms), and ensuring the project is functional, well-structured, and free of critical errors.
-
-
-### Notes
-Students are expected to be available on MS-Teams to receive calls and check on their progress every day from 10:00 AM to 12:00 PM, and 2:00 PM to 3:00 PM during the project.
-
 ### Need Assistance?
 Contact me during office hours (10:00 AM–12:00 PM and 2:00–3:00 PM, Mon–Sat). Support includes design reviews, and best practices guidance.
-
-### Final Submission:
-* Deadline: Wednesday at 9:00 PM. Update this README.md file to include a link to your recorded demo video. The video must include a walkthrough of the user experience, showcasing all the implemented features.
 
 ---
 ## 🎥 Demo Video  
 🔗 [Watch the Project Video Here](https://mum0-my.sharepoint.com/:f:/r/personal/sroy_miu_edu/Documents/WAP?csf=1&web=1&e=ueuJ3E)
 ---
-
-Good luck, and happy coding!
-
-_Code Honor Submission Policy: Remember to respect the code honor submission policy. All written code must be original. You may not share any part of your code with other students. Code duplications will results to receiving NC for the final project. Presenting any code as one’s own work when it came from another source is plagiarism, which includes any matching patterns and code snippets, and will affect your grade. The use of AI is not permitted in this assignment. For more details, check the full course policies in the syllabus._
