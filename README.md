@@ -1,4 +1,4 @@
-Project March 2025: Blog Management Platform
+# Project March 2025: Blog Management Platform
 Build a blog management platform where users can create, and interact with blog posts. 
 
 ### Core Functionality
